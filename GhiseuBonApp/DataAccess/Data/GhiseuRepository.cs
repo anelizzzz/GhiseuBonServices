@@ -3,7 +3,7 @@ using DataAccess.Models;
 
 namespace DataAccess.Data;
 
-public class GhiseuRepository
+public class GhiseuRepository : IGhiseuRepository
 {
     private readonly ISqlAccess _db;
 
