@@ -58,11 +58,20 @@
     <Folder Include="Properties" />
     <Folder Include="bon" />
     <Folder Include="bon\Tables" />
+    <Folder Include="bon\StoredProcedures" />
+    <Folder Include="bon\StoredProcedures\BonSP" />
+    <Folder Include="bon\StoredProcedures\GhiseuSP" />
+    <Folder Include="bon\StoredProcedures\UserSP" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="bon\Tables\Ghiseu.sql" />
     <Build Include="bon\Tables\Bon.sql" />
     <Build Include="bon\Tables\User.sql" />
+    <Build Include="bon\StoredProcedures\GhiseuSP\spGhiseu_GetAll.sql" />
+    <Build Include="bon\StoredProcedures\GhiseuSP\spGhiseu_Get.sql" />
+    <Build Include="bon\StoredProcedures\GhiseuSP\spGhiseu_Insert.sql" />
+    <Build Include="bon\StoredProcedures\GhiseuSP\spGhiseu_Update.sql" />
+    <Build Include="bon\StoredProcedures\GhiseuSP\spGhiseu_Delete.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="MyDB.refactorlog" />
