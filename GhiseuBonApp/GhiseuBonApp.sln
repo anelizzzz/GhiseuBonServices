@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GhiseuBon", "GhiseuBon\Ghis
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MyDB", "MyDB\MyDB.sqlproj", "{98ED2CB0-FF6C-43D7-AE1C-7D9ACC2E51CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{79BA1B74-E42A-4E33-964A-664FE33D3837}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{98ED2CB0-FF6C-43D7-AE1C-7D9ACC2E51CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98ED2CB0-FF6C-43D7-AE1C-7D9ACC2E51CE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{98ED2CB0-FF6C-43D7-AE1C-7D9ACC2E51CE}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{79BA1B74-E42A-4E33-964A-664FE33D3837}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79BA1B74-E42A-4E33-964A-664FE33D3837}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79BA1B74-E42A-4E33-964A-664FE33D3837}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79BA1B74-E42A-4E33-964A-664FE33D3837}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
