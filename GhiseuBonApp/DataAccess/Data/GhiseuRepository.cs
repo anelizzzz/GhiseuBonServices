@@ -30,4 +30,10 @@ public class GhiseuRepository : IGhiseuRepository
 
     public Task DeleteGhiseu(int id) =>
         _db.SaveData("dbo.spGhiseu_Delete", new { Id = id });
+    public Task MarkAsActive(int id) =>
+    _db.SaveData("dbo.spGhiseu_MarkAsActive", new { Id = id });
+
+    public Task MarkAsInactive(int id) =>
+        _db.SaveData("dbo.spGhiseu_MarkAsInactive", new { Id = id });
+
 }

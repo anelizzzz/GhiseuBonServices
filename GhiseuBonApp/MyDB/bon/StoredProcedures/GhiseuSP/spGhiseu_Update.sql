@@ -7,7 +7,7 @@
 	@Activ bit 
 AS
 begin
-	update dbo.[Ghiseu]
+	update bon.[Ghiseu]
 	set Cod = @Cod, Denumire = @Denumire, Descriere = @Descriere, Icon = @Icon, Activ = @Activ
 	where Id = @Id;
 end

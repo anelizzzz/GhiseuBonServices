@@ -3,6 +3,6 @@
 AS
 begin
 	select Id, Cod, Denumire, Descriere, Icon, Activ 
-	from dbo.[Ghiseu]
+	from bon.[Ghiseu]
 	where Id = @Id;
 end

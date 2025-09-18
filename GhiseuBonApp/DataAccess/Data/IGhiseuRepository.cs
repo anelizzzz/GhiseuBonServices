@@ -9,5 +9,7 @@ namespace DataAccess.Data
         Task<GhiseuModel?> GetGhiseu(int id);
         Task InsertGhiseu(GhiseuModel ghiseu);
         Task UpdateGhiseu(GhiseuModel ghiseu);
+        Task MarkAsActive(int id);
+        Task MarkAsInactive(int id);
     }
 }
