@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[Bon]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [IdGhiseu] INT NULL, 
+    [Stare] NCHAR(10) NULL, 
+    [CreatedAt] DATETIME NULL DEFAULT GETDATE(), 
+    [ModifiedAt] DATETIME NULL DEFAULT GETDATE(), 
+    CONSTRAINT [FK_Bon_ToGhiseu] FOREIGN KEY (IdGhiseu) REFERENCES [Ghiseu]([Id])
+)

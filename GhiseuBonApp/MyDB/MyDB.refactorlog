@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="31af86f9-0889-40af-adb6-8ba14b08e732" ChangeDateTime="09/18/2025 07:45:26">
+    <Property Name="ElementName" Value="[dbo].[FK_Bon_To]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[Bon]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_Bon_ToGhiseu]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="77c9ed7e-4632-4339-ad74-00f5e80a1b6b" ChangeDateTime="09/18/2025 07:46:47">
+    <Property Name="ElementName" Value="[dbo].[User].[LastNAME]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[User]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LastName" />
+  </Operation>
+</Operations>

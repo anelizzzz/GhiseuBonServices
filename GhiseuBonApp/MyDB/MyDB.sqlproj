@@ -3,16 +3,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>InitialDb</Name>
+    <Name>MyDB</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{87ed91f7-0ab7-4376-b2b0-90d3655ed45c}</ProjectGuid>
+    <ProjectGuid>{98ed2cb0-ff6c-43d7-ae1c-7d9acc2e51ce}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql160DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>InitialDb</RootNamespace>
-    <AssemblyName>InitialDb</AssemblyName>
+    <RootNamespace>MyDB</RootNamespace>
+    <AssemblyName>MyDB</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
@@ -56,6 +56,15 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
-    <Folder Include="dbo" />
+    <Folder Include="bon" />
+    <Folder Include="bon\Tables" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="bon\Tables\Ghiseu.sql" />
+    <Build Include="bon\Tables\Bon.sql" />
+    <Build Include="bon\Tables\User.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="MyDB.refactorlog" />
   </ItemGroup>
 </Project>
