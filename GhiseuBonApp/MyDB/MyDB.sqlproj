@@ -74,6 +74,14 @@
     <Build Include="bon\StoredProcedures\GhiseuSP\spGhiseu_Delete.sql" />
     <Build Include="bon\StoredProcedures\GhiseuSP\spGhiseu_MarkAsActive.sql" />
     <Build Include="bon\StoredProcedures\GhiseuSP\spGhiseu_MarkAsInactive.sql" />
+    <Build Include="bon\StoredProcedures\BonSP\spBon_GetAll.sql" />
+    <Build Include="bon\StoredProcedures\BonSP\spBon_Get.sql" />
+    <Build Include="bon\StoredProcedures\BonSP\spBon_Delete.sql" />
+    <Build Include="bon\StoredProcedures\BonSP\spBon_Insert.sql" />
+    <Build Include="bon\StoredProcedures\BonSP\spBon_Update.sql" />
+    <Build Include="bon\StoredProcedures\BonSP\spBon_MarkAsInProgress.sql" />
+    <Build Include="bon\StoredProcedures\BonSP\spBon_MarkAsClosed.sql" />
+    <Build Include="bon\StoredProcedures\BonSP\spBon_MarkAsReceived.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="MyDB.refactorlog" />
