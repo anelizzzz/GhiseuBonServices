@@ -1,0 +1,6 @@
+@GhiseuBon_HostAddress = http://localhost:5159
+
+GET {{GhiseuBon_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
