@@ -1,6 +1,6 @@
 ﻿namespace DataAccess.Models;
 
-internal class GhiseuModel
+public class GhiseuModel
 {
     public int Id { get; set; }
     public string Cod { get; set; }
