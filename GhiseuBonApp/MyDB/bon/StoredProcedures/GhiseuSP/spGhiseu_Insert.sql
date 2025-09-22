@@ -8,5 +8,7 @@ AS
 begin
 	insert into dbo.[Ghiseu](Cod, Denumire, Descriere, Icon, Activ)
 	values (@Cod, @Denumire, @Descriere, @Icon, @Activ);
+
+	SELECT SCOPE_IDENTITY() AS Id;
 end
 

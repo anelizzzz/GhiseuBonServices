@@ -1,5 +1,4 @@
 ﻿CREATE PROCEDURE [dbo].[spBon_Insert]
-	@Id int,
 	@IdGhiseu int,
 	@Stare nvarchar(10),
 	@CreatedAt datetime,

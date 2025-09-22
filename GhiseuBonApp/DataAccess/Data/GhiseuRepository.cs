@@ -5,7 +5,7 @@ using DataAccess.Models;
 public class GhiseuRepository : GenericRepository<GhiseuModel, int>, IGhiseuRepository
 {
     public GhiseuRepository(ISqlAccess db)
-        : base(db, "dbo", "Ghiseu") // Pass schema and entity name to the base class
+        : base(db, "dbo", "Ghiseu")
     {
     }
 
