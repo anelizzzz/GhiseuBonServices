@@ -1,3 +1,6 @@
+using DataAccess.DbAccess;
+using DataAccess.UnitOfWork;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,6 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
+builder.Services.AddSingleton<ISqlAccess, SqlAccess>();
+builder.Services.AddSingleton<IUnitOfWork, UnitOfWork>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
