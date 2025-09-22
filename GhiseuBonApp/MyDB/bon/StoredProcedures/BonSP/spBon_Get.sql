@@ -3,6 +3,6 @@
 AS
 begin
 	select Id, IdGhiseu, Stare, CreatedAt, ModifiedAt
-	from bon.[Bon]
+	from dbo.[Bon]
 	where Id = @Id;
 end

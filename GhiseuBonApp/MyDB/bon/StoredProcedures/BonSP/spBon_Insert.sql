@@ -6,6 +6,6 @@
 	@ModifiedAt datetime
 AS
 BEGIN
-	insert into bon.[Bon](IdGhiseu, Stare, CreatedAt, ModifiedAt)
+	insert into dbo.[Bon](IdGhiseu, Stare, CreatedAt, ModifiedAt)
 	values( @IdGhiseu, @Stare, @CreatedAt, @ModifiedAt);
 END

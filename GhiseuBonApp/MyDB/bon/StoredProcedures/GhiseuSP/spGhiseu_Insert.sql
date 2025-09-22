@@ -6,7 +6,7 @@
 	@Activ bit
 AS
 begin
-	insert into bon.[Ghiseu](Cod, Denumire, Denumire, Icon, Activ)
+	insert into dbo.[Ghiseu](Cod, Denumire, Descriere, Icon, Activ)
 	values (@Cod, @Denumire, @Descriere, @Icon, @Activ);
 end
 

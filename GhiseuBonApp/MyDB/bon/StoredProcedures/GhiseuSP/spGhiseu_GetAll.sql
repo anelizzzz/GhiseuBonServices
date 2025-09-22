@@ -2,5 +2,5 @@
 AS
 begin
 	select Cod, Denumire, Descriere, Icon, Activ
-	from bon.[Ghiseu]
+	from dbo.[Ghiseu]
 end

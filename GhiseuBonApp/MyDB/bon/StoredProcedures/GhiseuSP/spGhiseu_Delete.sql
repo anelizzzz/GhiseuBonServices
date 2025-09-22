@@ -3,6 +3,6 @@
 AS
 begin
 	delete
-	from bon.[Ghiseu]
+	from dbo.[Ghiseu]
 	where Id = @Id;
 end

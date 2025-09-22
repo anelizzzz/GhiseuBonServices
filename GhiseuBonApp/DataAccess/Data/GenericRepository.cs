@@ -5,9 +5,9 @@ namespace DataAccess.Data;
 public class GenericRepository<TEntity, TKey>
     where TEntity : class
 {
-    private readonly ISqlAccess _db;
-    private readonly string _schema;
-    private readonly string _entityName;
+    protected readonly ISqlAccess _db;
+    protected readonly string _schema;
+    protected readonly string _entityName;
 
     public GenericRepository(ISqlAccess db, string schema, string entityName)
     {
@@ -27,7 +27,7 @@ public class GenericRepository<TEntity, TKey>
         return results.FirstOrDefault();
     }
 
-    public Task InsertAsync(TEntity entity) =>
+    public virtual Task InsertAsync(TEntity entity) =>
         _db.SaveData($"{_schema}.sp{_entityName}_Insert", entity);
 
     public Task UpdateAsync(TEntity entity) =>

@@ -2,6 +2,6 @@
 	@Id Int
 AS
 begin
-	update bon.Ghiseu set activ = 1 
+	update dbo.Ghiseu set activ = 1 
 	where Id = @Id;
 end

@@ -6,7 +6,7 @@
 	@ModifiedAt datetime
 AS
 begin
-	update bon.[Bon]
+	update dbo.[Bon]
 	set 
 		IdGhiseu = @IdGhiseu,
 		Stare = @Stare,

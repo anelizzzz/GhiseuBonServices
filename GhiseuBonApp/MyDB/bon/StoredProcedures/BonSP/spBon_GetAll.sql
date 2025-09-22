@@ -2,5 +2,5 @@
 AS
 begin
 	select IdGhiseu, Stare, CreatedAt, ModifiedAt
-	from bon.[Bon]
+	from dbo.[Bon]
 end

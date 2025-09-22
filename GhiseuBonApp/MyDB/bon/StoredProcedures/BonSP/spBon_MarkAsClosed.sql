@@ -2,8 +2,8 @@
 	@Id int
 AS
 begin
-	update bon.[Bon]
-	set Stare = "inchis",
+	update dbo.[Bon]
+	set Stare = 'inchis',
 		ModifiedAt = GETDATE()
 	where Id = @Id;
 end
