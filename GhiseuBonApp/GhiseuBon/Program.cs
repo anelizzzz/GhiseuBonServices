@@ -1,3 +1,4 @@
+using DataAccess.Data;
 using DataAccess.DbAccess;
 using DataAccess.UnitOfWork;
 
@@ -10,7 +11,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddSingleton<ISqlAccess, SqlAccess>();
 builder.Services.AddSingleton<IUnitOfWork, UnitOfWork>();
-
+builder.Services.AddSingleton(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));
 
 var app = builder.Build();
 

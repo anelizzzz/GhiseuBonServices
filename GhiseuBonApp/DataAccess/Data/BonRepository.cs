@@ -1,7 +1,6 @@
-﻿using DataAccess.DbAccess;
+﻿using DataAccess.Data;
+using DataAccess.DbAccess;
 using DataAccess.Models;
-
-namespace DataAccess.Data;
 
 public class BonRepository : IBonRepository
 {
@@ -11,8 +10,20 @@ public class BonRepository : IBonRepository
         _db = db;
     }
 
+    public Task<IEnumerable<BonModel>> GetAllAsync() => GetAllItems();
+
+    public Task<BonModel?> GetByIdAsync(int id) => GetBon(id);
+
+    public Task InsertAsync(BonModel bon) => InsertBon(bon);
+
+    public Task UpdateAsync(BonModel bon) => UpdateBon(bon);
+
+    public Task DeleteAsync(int id) => DeleteBon(id);
+
+
     public Task<IEnumerable<BonModel>> GetAllItems() =>
         _db.LoadData<BonModel, dynamic>("bon.spBon_GetAll", new { });
+
     public async Task<BonModel?> GetBon(int id)
     {
         var results = await _db.LoadData<BonModel, dynamic>(
@@ -31,10 +42,11 @@ public class BonRepository : IBonRepository
         _db.SaveData("bon.spBon_Delete", new { Id = id });
 
     public Task MarkAsInProgress(int id) =>
-    _db.SaveData("bon.spBon_MarkAsInProgress", new { Id = id });
+        _db.SaveData("bon.spBon_MarkAsInProgress", new { Id = id });
 
     public Task MarkAsReceived(int id) =>
-    _db.SaveData("bon.spBon_MarkAsReceived", new { Id = id });
+        _db.SaveData("bon.spBon_MarkAsReceived", new { Id = id });
+
     public Task MarkAsClosed(int id) =>
-    _db.SaveData("bon.spBon_MarkAsClosed", new { Id = id });
+        _db.SaveData("bon.spBon_MarkAsClosed", new { Id = id });
 }

@@ -6,21 +6,21 @@ namespace GhiseuBon.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BonController : ControllerBase
+    public class BonController : CrudControllerBase<BonModel, int>
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public BonController(IUnitOfWork unitOfWork)
+        public BonController(IUnitOfWork unitOfWork) : base(unitOfWork.Bon)
         {
             _unitOfWork = unitOfWork;
         }
 
-        [HttpPut]
-        public async Task<IActionResult> Add([FromBody] BonModel model)
-        {
-            await _unitOfWork.Bon.InsertBon(model);
-            return Ok();
-        }
+        /* [HttpPut]
+         public async Task<IActionResult> Add([FromBody] BonModel model)
+         {
+             await _unitOfWork.Bon.InsertBon(model);
+             return Ok();
+         }*/
 
         [HttpPut("{id}/progress")]
         public async Task<IActionResult> MarkAsInProgress(int id)

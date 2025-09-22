@@ -2,7 +2,7 @@
 
 namespace DataAccess.Data
 {
-    public interface IBonRepository
+    public interface IBonRepository : IGenericRepository<BonModel, int>
     {
         Task DeleteBon(int id);
         Task<IEnumerable<BonModel>> GetAllItems();
@@ -11,6 +11,6 @@ namespace DataAccess.Data
         Task MarkAsClosed(int id);
         Task MarkAsInProgress(int id);
         Task MarkAsReceived(int id);
-        Task UpdateBon(BonModel bon);
+        //Task UpdateBon(BonModel bon);
     }
 }
