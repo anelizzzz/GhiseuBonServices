@@ -1,91 +1,61 @@
-﻿using DataAccess.Data;
+﻿using AutoMapper;
+using DataAccess.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GhiseuBon.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CrudControllerBase<TEntity, TKey> : ControllerBase
+    public class CrudControllerBase<TDto, TEntity, TKey> : ControllerBase
         where TEntity : class
+        where TDto : class
     {
         protected readonly IGenericRepository<TEntity, TKey> _repository;
-        public CrudControllerBase(IGenericRepository<TEntity, TKey> repository)
+        protected readonly IMapper _mapper;
+        public CrudControllerBase(IGenericRepository<TEntity, TKey> repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public virtual async Task<ActionResult<IEnumerable<TEntity>>> GetAll()
+        public virtual async Task<ActionResult<IEnumerable<TDto>>> GetAll()
         {
-            try
-            {
-                var items = await _repository.GetAllAsync();
-                if (items == null || !items.Any())
-                    return NotFound("No items found.");
-                return Ok(items);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Error retrieving items: {ex.Message}");
-            }
+            var entities = await _repository.GetAllAsync();
+            return Ok(_mapper.Map<IEnumerable<TDto>>(entities));
         }
 
+
         [HttpGet("{id}")]
-        public virtual async Task<ActionResult<TEntity>> GetById(TKey id)
+        public virtual async Task<ActionResult<TDto>> GetById(TKey id)
         {
-            try
-            {
-                var item = await _repository.GetByIdAsync(id);
-                if (item == null)
-                    return NotFound($"Item with id {id} not found.");
-                return Ok(item);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Error retrieving item: {ex.Message}");
-            }
+            var entity = await _repository.GetByIdAsync(id);
+            if (entity == null) return NotFound();
+            return Ok(_mapper.Map<TDto>(entity));
         }
 
         [HttpPost]
-        public virtual async Task<IActionResult> Add([FromBody] TEntity entity)
+        public virtual async Task<IActionResult> Add([FromBody] TDto dto)
         {
-            try
-            {
-                await _repository.InsertAsync(entity);
-                return Ok("Item added successfully.");
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Error adding item: {ex.Message}");
-            }
+            var entity = _mapper.Map<TEntity>(dto);
+            await _repository.InsertAsync(entity);
+            return Ok("Item added successfully.");
         }
 
         [HttpPut]
-        public virtual async Task<IActionResult> Update([FromBody] TEntity entity)
+        public virtual async Task<IActionResult> Update([FromBody] TDto dto)
         {
-            try
-            {
-                await _repository.UpdateAsync(entity);
-                return Ok("Item updated successfully.");
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Error updating item: {ex.Message}");
-            }
+            var entity = _mapper.Map<TEntity>(dto);
+            await _repository.UpdateAsync(entity);
+            return Ok("Item updated successfully.");
         }
 
         [HttpDelete("{id}")]
         public virtual async Task<IActionResult> Delete(TKey id)
         {
-            try
-            {
-                await _repository.DeleteAsync(id);
-                return Ok("Item deleted successfully.");
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Error deleting item: {ex.Message}");
-            }
+            await _repository.DeleteAsync(id);
+            return Ok("Item deleted successfully.");
         }
+
     }
 }

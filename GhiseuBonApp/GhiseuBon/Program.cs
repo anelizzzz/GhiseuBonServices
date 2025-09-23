@@ -2,6 +2,7 @@ using DataAccess.Data;
 using DataAccess.DbAccess;
 using DataAccess.UnitOfWork;
 using FluentMigrator.Runner;
+using GhiseuBon.Mapping;
 using GhiseuBonMigrations.Migrations;
 using System.Reflection;
 
@@ -12,6 +13,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
+builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
+
 builder.Services.AddSingleton<ISqlAccess, SqlAccess>();
 builder.Services.AddSingleton<IUnitOfWork, UnitOfWork>();
 builder.Services.AddSingleton(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));
