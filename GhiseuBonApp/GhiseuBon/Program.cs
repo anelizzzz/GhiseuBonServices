@@ -2,7 +2,10 @@ using DataAccess.Data;
 using DataAccess.DbAccess;
 using DataAccess.UnitOfWork;
 using FluentMigrator.Runner;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using GhiseuBon.Mapping;
+using GhiseuBon.Validators;
 using GhiseuBonMigrations.Migrations;
 using System.Reflection;
 
@@ -19,6 +22,9 @@ builder.Services.AddSingleton<ISqlAccess, SqlAccess>();
 builder.Services.AddSingleton<IUnitOfWork, UnitOfWork>();
 builder.Services.AddSingleton(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));
 
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddValidatorsFromAssemblyContaining<BonValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<GhiseuValidator>();
 
 
 builder.Services.AddFluentMigratorCore()
