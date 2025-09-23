@@ -1,6 +1,9 @@
 using DataAccess.Data;
 using DataAccess.DbAccess;
 using DataAccess.UnitOfWork;
+using FluentMigrator.Runner;
+using GhiseuBonMigrations.Migrations;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +16,23 @@ builder.Services.AddSingleton<ISqlAccess, SqlAccess>();
 builder.Services.AddSingleton<IUnitOfWork, UnitOfWork>();
 builder.Services.AddSingleton(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));
 
+
+
+builder.Services.AddFluentMigratorCore()
+    .ConfigureRunner(rb => rb
+        .AddSqlServer() // or .AddPostgres(), .AddMySql(), etc.
+        .WithGlobalConnectionString(builder.Configuration.GetConnectionString("Default"))
+        .ScanIn(Assembly.GetAssembly(typeof(CreateBonTable))).For.Migrations()) // or specify your migration assembly
+    .AddLogging(lb => lb.AddFluentMigratorConsole());
+
+
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var runner = scope.ServiceProvider.GetRequiredService<IMigrationRunner>();
+    runner.MigrateUp();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
