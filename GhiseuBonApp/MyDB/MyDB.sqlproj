@@ -87,6 +87,7 @@
     <Build Include="bon\StoredProcedures\UserSP\spUser_Insert.sql" />
     <Build Include="bon\StoredProcedures\UserSP\spUser_Update.sql" />
     <Build Include="bon\StoredProcedures\UserSP\spUser_Delete.sql" />
+    <Build Include="bon\StoredProcedures\UserSP\spUser_GetByUsername.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="MyDB.refactorlog" />

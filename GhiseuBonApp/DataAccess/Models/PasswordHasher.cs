@@ -1,7 +1,5 @@
 ﻿using System.Security.Cryptography;
 
-namespace DataAccess.Models;
-
 public static class PasswordHasher
 {
     public static string HashPassword(string password)
@@ -16,5 +14,24 @@ public static class PasswordHasher
 
         return Convert.ToBase64String(hashBytes);
     }
-}
 
+    public static bool VerifyPassword(string enteredPassword, string storedHash)
+    {
+        byte[] hashBytes = Convert.FromBase64String(storedHash);
+
+        byte[] salt = new byte[16];
+        Array.Copy(hashBytes, 0, salt, 0, 16);
+
+        var pbkdf2 = new Rfc2898DeriveBytes(enteredPassword, salt, 100_000, HashAlgorithmName.SHA256);
+        byte[] enteredHash = pbkdf2.GetBytes(32);
+
+        for (int i = 0; i < 32; i++)
+        {
+            if (hashBytes[i + 16] != enteredHash[i])
+                return false;
+        }
+
+        return true;
+    }
+
+}

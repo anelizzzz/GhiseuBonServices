@@ -11,7 +11,8 @@ public class UserRepository : GenericRepository<UserModel, int>, IUserRepository
     }
     public override async Task InsertAsync(UserModel user)
     {
-        user.PasswordHash = PasswordHasher.HashPassword(user.PasswordHash);
+        user.PasswordHash = PasswordHasher
+            .HashPassword(user.PasswordHash);
         await _db.SaveData($"{_schema}.sp{_entityName}_Insert", new
         {
             user.FirstName,
@@ -37,5 +38,11 @@ public class UserRepository : GenericRepository<UserModel, int>, IUserRepository
             user.CreatedAt,
         });
     }
-
+    public async Task<UserModel?> GetByUsernameAsync(string username)
+    {
+        var results = await _db.LoadData<UserModel, dynamic>(
+            $"{_schema}.sp{_entityName}_GetByUsername",
+            new { UserName = username });
+        return results.FirstOrDefault();
+    }
 }
