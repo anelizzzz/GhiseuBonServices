@@ -5,7 +5,7 @@ namespace GhiseuBon.Validators;
 
 public class BonValidator : AbstractValidator<BonDto>
 {
-    private static readonly string[] AllowedStates = { "in procress", "preluat", "inchis" }; //Adaugare enum class
+    private static readonly string[] AllowedStates = { "in process", "preluat", "inchis" }; //Adaugare enum class
     public BonValidator()
     {
 

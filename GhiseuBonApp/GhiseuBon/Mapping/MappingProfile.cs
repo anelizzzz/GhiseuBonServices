@@ -10,5 +10,6 @@ public class MappingProfile : Profile
     {
         CreateMap<BonDto, BonModel>().ReverseMap();
         CreateMap<GhiseuDto, GhiseuModel>().ReverseMap();
+        CreateMap<UserDto, UserModel>().ReverseMap();
     }
 }

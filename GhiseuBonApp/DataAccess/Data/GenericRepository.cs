@@ -30,7 +30,7 @@ public class GenericRepository<TEntity, TKey>
     public virtual Task InsertAsync(TEntity entity) =>
         _db.SaveData($"{_schema}.sp{_entityName}_Insert", entity);
 
-    public Task UpdateAsync(TEntity entity) =>
+    public virtual Task UpdateAsync(TEntity entity) =>
         _db.SaveData($"{_schema}.sp{_entityName}_Update", entity);
 
     public Task DeleteAsync(TKey id) =>

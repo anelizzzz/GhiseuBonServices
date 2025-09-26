@@ -6,5 +6,6 @@ namespace DataAccess.UnitOfWork
     {
         IGhiseuRepository Ghiseu { get; }
         IBonRepository Bon { get; }
+        IUserRepository User { get; }
     }
 }

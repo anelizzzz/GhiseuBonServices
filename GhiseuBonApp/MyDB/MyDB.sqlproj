@@ -82,6 +82,11 @@
     <Build Include="bon\StoredProcedures\BonSP\spBon_MarkAsInProgress.sql" />
     <Build Include="bon\StoredProcedures\BonSP\spBon_MarkAsClosed.sql" />
     <Build Include="bon\StoredProcedures\BonSP\spBon_MarkAsReceived.sql" />
+    <Build Include="bon\StoredProcedures\UserSP\spUser_Get.sql" />
+    <Build Include="bon\StoredProcedures\UserSP\spUser_GetAll.sql" />
+    <Build Include="bon\StoredProcedures\UserSP\spUser_Insert.sql" />
+    <Build Include="bon\StoredProcedures\UserSP\spUser_Update.sql" />
+    <Build Include="bon\StoredProcedures\UserSP\spUser_Delete.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="MyDB.refactorlog" />

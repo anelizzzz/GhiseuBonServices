@@ -29,21 +29,30 @@ builder.Services.AddValidatorsFromAssemblyContaining<GhiseuValidator>();
 
 builder.Services.AddFluentMigratorCore()
     .ConfigureRunner(rb => rb
-        .AddSqlServer() // or .AddPostgres(), .AddMySql(), etc.
+        .AddSqlServer()
         .WithGlobalConnectionString(builder.Configuration.GetConnectionString("Default"))
-        .ScanIn(Assembly.GetAssembly(typeof(CreateBonTable))).For.Migrations()) // or specify your migration assembly
+        .ScanIn(Assembly.GetAssembly(typeof(CreateBonTable))).For.Migrations())
     .AddLogging(lb => lb.AddFluentMigratorConsole());
 
 
-var app = builder.Build();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy.WithOrigins("http://localhost:5173")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 
+var app = builder.Build();
+app.UseCors("AllowFrontend");
 using (var scope = app.Services.CreateScope())
 {
     var runner = scope.ServiceProvider.GetRequiredService<IMigrationRunner>();
     runner.MigrateUp();
 }
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
