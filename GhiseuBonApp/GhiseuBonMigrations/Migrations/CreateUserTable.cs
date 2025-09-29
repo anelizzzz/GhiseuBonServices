@@ -1,4 +1,7 @@
 ﻿using FluentMigrator;
+using FluentMigrator.Oracle;
+using FluentMigrator.Postgres;
+using FluentMigrator.Snowflake;
 
 namespace GhiseuBonMigrations.Migrations;
 
@@ -10,7 +13,7 @@ public class CreateUserTable : Migration
         if (!Schema.Table("User").Exists())
         {
             Create.Table("User")
-                .WithColumn("Id").AsInt32().PrimaryKey().Identity()
+                .WithColumn("Id").AsInt32().PrimaryKey().Identity(1, 1)
                 .WithColumn("FirstName").AsString(50).NotNullable()
                 .WithColumn("LastName").AsString(50).NotNullable()
                 .WithColumn("Username").AsString(50).NotNullable().Unique()

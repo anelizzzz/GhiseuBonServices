@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GhiseuBon.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class BonController : CrudControllerBase<BonDto, BonModel, int>

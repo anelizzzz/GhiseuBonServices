@@ -33,7 +33,6 @@ namespace GhiseuBon.Controllers
             if (entity == null) return NotFound();
             return Ok(_mapper.Map<TDto>(entity));
         }
-
         [HttpPost]
         public virtual async Task<IActionResult> Add([FromBody] TDto dto)
         {
@@ -41,7 +40,7 @@ namespace GhiseuBon.Controllers
             await _repository.InsertAsync(entity);
             return Ok("Item added successfully.");
         }
-
+        //[Authorize]
         [HttpPut]
         public virtual async Task<IActionResult> Update([FromBody] TDto dto)
         {
@@ -49,7 +48,7 @@ namespace GhiseuBon.Controllers
             await _repository.UpdateAsync(entity);
             return Ok("Item updated successfully.");
         }
-
+        //[Authorize]
         [HttpDelete("{id}")]
         public virtual async Task<IActionResult> Delete(TKey id)
         {

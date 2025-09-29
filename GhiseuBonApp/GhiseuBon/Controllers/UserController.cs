@@ -24,9 +24,11 @@ public class UserController : CrudControllerBase<UserDto, UserModel, int>
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
     {
+        //StringSanitizer.TrimAllStrings(loginDto, "Password", "PasswordHash");
+
         var user = await _unitOfWork.User.GetByUsernameAsync(loginDto.Username);
         bool isValid = PasswordHasher.VerifyPassword(loginDto.Password, user.PasswordHash);
-
+        Console.WriteLine($"User:{user.UserName}, isValid:{isValid}");
         if (user == null || !isValid)
         {
             return Unauthorized("Invalid username or password.");
@@ -54,5 +56,40 @@ public class UserController : CrudControllerBase<UserDto, UserModel, int>
             token = jwtToken,
             user = userDto
         });
+    }
+    [HttpPost("register")]
+    public async Task<IActionResult> Add([FromBody] RegisterDto dto)
+    {
+        //StringSanitizer.TrimAllStrings(dto, "Password", "PasswordHash");
+
+        var existingUser = await _unitOfWork.User.GetByUsernameAsync(dto.UserName);
+        if (existingUser != null)
+        {
+            return Conflict("Username already exists.");
+        }
+        dto.Password = PasswordHasher.HashPassword(dto.Password);
+        var userEntity = dto.ToModel();
+        await _unitOfWork.User.InsertAsync(userEntity);
+
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var key = Encoding.UTF8.GetBytes("ThisIsASecretKeyForJwtTokenGeneration");
+        var tokenDescriptor = new Microsoft.IdentityModel.Tokens.SecurityTokenDescriptor
+        {
+            Subject = new System.Security.Claims.ClaimsIdentity(new[]
+            {
+                new System.Security.Claims.Claim("id", userEntity.Id.ToString()),
+                new System.Security.Claims.Claim("username", userEntity.UserName),
+                new System.Security.Claims.Claim("role", userEntity.RoleUser)
+            }),
+            Expires = DateTime.UtcNow.AddHours(1),
+            SigningCredentials = new Microsoft.IdentityModel.Tokens.SigningCredentials(new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(key), Microsoft.IdentityModel.Tokens.SecurityAlgorithms.HmacSha256Signature)
+        };
+        var jwtToken = tokenHandler.CreateToken(tokenDescriptor);
+        return Ok(new
+        {
+            token = jwtToken,
+            user = userEntity
+        });
+
     }
 }
